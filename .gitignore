@@ -1,0 +1,4 @@
+logs/*.txt
+.env
+dj_api/db.sqlite3
+
