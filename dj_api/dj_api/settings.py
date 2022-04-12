@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'django_celery_beat',
     'user.apps.UserConfig',
     'game.apps.GameConfig',
     'pay_sys.apps.PaySysConfig',
@@ -200,4 +201,16 @@ LOGGING = {
             'level': 'DEBUG'
         }
     }
+}
+
+
+# Celery
+
+CELERY_TIMEZONE = 'Europe/Moscow'
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_BEAT_SCHEDULE = {
+    'print_hello': {'task': 'pay_sys.tasks.print_hello', 'schedule': 5.0},
 }

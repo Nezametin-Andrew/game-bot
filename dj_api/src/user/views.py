@@ -12,9 +12,15 @@ from services.utils import CreatingUserHandler
 class CreateProfileApiView(APIView):
 
     def post(self, request, *args, **kwargs):
-        user = CreatingUserHandler(method='create', serializer=UserProfileSerializer, data=request.data).process()
+        #user = CreatingUserHandler(method='create', serializer=UserProfileSerializer, data=request.data).process()
+        #return Response(user.data)
 
-        return Response(user.data)
+        serialize = UserProfileSerializer(data=request.data)
+        print(serialize.is_valid())
+        print(serialize.errors)
+        #print(serialize.validated_data)
+        print(serialize.data)
+        return Response({})
 
 
 class ListUserApiView(ListAPIView):

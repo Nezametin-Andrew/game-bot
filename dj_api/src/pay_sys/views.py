@@ -1,10 +1,19 @@
-from rest_framework.generics import ListAPIView, CreateAPIView, DestroyAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveDestroyAPIView, RetrieveAPIView
 from .serializers import PaymentSerializer
 from .models import Payment
 from .mixins import PaymentMixin
 
 
-class PaymentApiView(ListAPIView):
+class PaymentRetrieveDestroyApiView(PaymentMixin, RetrieveDestroyAPIView):
+    ...
+
+
+class PaymentListApiView(PaymentMixin, ListCreateAPIView):
+
+    ...
+
+
+class PaymentTelegramApiView(RetrieveAPIView):
 
     us_id = None
     serializer_class = PaymentSerializer
@@ -18,13 +27,3 @@ class PaymentApiView(ListAPIView):
         if self.us_id is not None:
             return Payment.objects.filter(user=self.us_id)
         return Payment.objects.all()
-
-
-class CreatePaymentApiView(PaymentMixin, CreateAPIView):
-
-    ...
-
-
-class DeletePaymentApiView(PaymentMixin, DestroyAPIView):
-
-    ...
