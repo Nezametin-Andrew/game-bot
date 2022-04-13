@@ -6,7 +6,7 @@ from rest_framework.response import Response
 
 from .models import UserProfile
 from .serializers import UserProfileSerializer, UserDetailSerializer
-from services.utils import CreatingUserHandler
+from services.user_handlers import CreatingUserHandler
 
 
 class CreateProfileApiView(APIView):

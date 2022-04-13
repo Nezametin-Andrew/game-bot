@@ -14,6 +14,7 @@ class Wallet(models.Model):
 class Payment(models.Model):
 
     user = models.ForeignKey('user.UserProfile', on_delete=models.CASCADE, verbose_name=_('User'), related_name='payment', unique=True)
+    wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE, verbose_name='wallet', null=True, blank=True)
     total_sum = models.DecimalField(_('Total sum'), max_digits=7, decimal_places=5)
     created_at = models.DateTimeField(_('Created'), auto_now_add=True)
 

@@ -9,10 +9,7 @@
 # }
 
 
-l1 = 's'
-l2 = 's'
 
-#[l1, l2] = list()
 
-context = locals()
-print(context['context'])
+
+
